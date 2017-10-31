@@ -1,0 +1,32 @@
+{
+  "name": "jwt-passport-auth",
+  "version": "1.0.0",
+  "description": "Manejo de Usuarios con JSON Web Token y Passport",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarcioMatteucci/jwt-passport-auth.git"
+  },
+  "keywords": [
+    "jwt",
+    "passport",
+    "node",
+    "express",
+    "auth"
+  ],
+  "author": "Marcio Matteucci",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MarcioMatteucci/jwt-passport-auth/issues"
+  },
+  "homepage": "https://github.com/MarcioMatteucci/jwt-passport-auth#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "express-promise-router": "^2.0.0",
+    "morgan": "^1.9.0"
+  }
+}
