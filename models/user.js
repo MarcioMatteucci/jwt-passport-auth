@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 const Schema = mongoose.Schema;
 
 // Crear Schema
@@ -27,6 +28,30 @@ const userSchema = new Schema({
       lowercase: true
    }
 }, { timestamps: true });
+
+// Pre save para hashear la password
+userSchema.pre('save', async function (next) {
+   try {
+      // Generar salt
+      const salt = await bcrypt.genSalt(10);
+      // Generar password hash (salt + password)
+      const passwordHash = await bcrypt.hash(this.password, salt);
+      // Reasignar la password hasheada a la password
+      this.password = passwordHash;
+      next();
+   } catch (err) {
+      next(err);
+   }
+});
+
+// Metodo para comparar las passwords
+userSchema.methods.isValidPassword = async function (inputPassword) {
+   try {
+      return await bcrypt.compare(inputPassword, this.password);
+   } catch (err) {
+      throw new Error(err);
+   }
+}
 
 // Crear el modelo basado en el Schema
 const User = mongoose.model('user', userSchema);
